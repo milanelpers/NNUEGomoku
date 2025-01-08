@@ -5,4 +5,4 @@ In order to start the game, run the `main.py` and choose which agent to play to 
 
 There are multiple agents to chose from. If you want to play yourself against an agent, choose `human`.
 
-The NNUE model is implemented in `nnue.py`, the classic model in `classical_nn.py`
+The NNUE model is implemented in `nnue.py`, the classic model in `classical_nn.py` with the Minimax AI in `agent_minimax`.
