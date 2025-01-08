@@ -16,7 +16,7 @@ def get_valid_moves(board):
         board (ndarray): The current board state.
 
     Returns:
-        valid_moves (list): List of tuples containing the valid moves.
+        ndarray: Array of tuples containing the valid moves.
     '''
     return np.argwhere(board == 0)
 
@@ -31,7 +31,7 @@ def chose_empty_from_half_open(board, pos_of_half_open):
         pos_of_half_open (ndarray): (4,) shaped array containing the pos of the first element of the half-open x-in-row of the opponent or the board edge and the empty pos
 
     Returns:
-        pos (ndarray): The empty position the agent will play, shaped (2,)
+        ndarray: The empty position the agent will play, shaped (2,)
     '''
     pos_1_start, pos_1_end, pos_2_start, pos_2_end = pos_of_half_open
     if board[pos_1_start, pos_1_end] == 0:
@@ -117,7 +117,7 @@ def can_skip(slice):
     Args:
         slice (ndarray): A 6-long slice from the board
     Returns:
-        (Boolean): True if the slice can get skipped, False otherwise
+        Boolean: True if the slice can get skipped, False otherwise
     '''
     if np.all(slice == 0):
         return True
@@ -430,14 +430,6 @@ def process_diags(board, orientation):
         local_open_xs_white (ndarray): Array for open xs-in-row for white
     '''
     local_half_open_xs_black, local_open_xs_black, local_half_open_xs_white, local_open_xs_white = create_empty_arrays()
-    '''
-    Diagonals
-    negative offsets: diagonals below main diag
-    positive offsets: diagonals above main diag
-    diag has to have 5 elements
-    -> smallest for 5, negative offset: [10,0] to [14,4] (bottom left corner)
-    -> smallest for 5, pos. offset: [0,10] to [4,14] (top right corner)
-    '''
     for offset in range(-10, 11):
         if orientation == 'diagonal':
             diag = np.diag(board, k=offset)
@@ -608,7 +600,7 @@ def forks(open_xs_black, open_xs_white):
         open_xs_white (ndarray): (200, 4) shaped array, containing the open 3-in-a-rows for the white player.
 
     Returns
-        number_forks (tuple): First element contains the number of forks found on the board for the black player, second contains the number for the white player
+        number_forks (ndarray): First element contains the number of forks found on the board for the black player, second contains the number for the white player
     '''
     number_forks = np.array([0, 0])
     for idx in range(open_xs_black.shape[0]):
